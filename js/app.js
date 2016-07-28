@@ -87,12 +87,12 @@ var getUnanswered = function(tags) {
 // this function takes the tag-score object returned by the StackOverflow request
 // and returns new result to be appended to DOM
 var showUsers = function(query) {
-	
+	console.log(query);
 	// clone our result template code
 	var result = $('.templates .top-answerer').clone();
 
 	var dispName = result.find('.display-name');
-	dispName.html('<p>Display Name: ' + query.user.display_name + '</p>');
+	dispName.html('<p>Display Name: <a href="' +query.user.link+ '">' + query.user.display_name + '</a> </p>');
 
 	var score = result.find('.score');
 	score.html('<p> Reputation: '+ query.user.reputation + '</p>');
@@ -138,7 +138,7 @@ var getTopAnswerers = function(tags) {
 
 
 $(document).ready( function() {
-	$('.unanswered-getter').submit( function(e){
+	$('.unanswered-getter').submit(function(e){
 		e.preventDefault();
 		// zero out results if previous search has run
 		$('.results').html('');
@@ -147,7 +147,7 @@ $(document).ready( function() {
 		getUnanswered(tags);
 	});
 
-	$('.inspiration-getter').submit( function(e){
+	$('.inspiration-getter').submit(function(e){
 		e.preventDefault();
 		// zero out results if previous search has run
 		$('.results').html('');
